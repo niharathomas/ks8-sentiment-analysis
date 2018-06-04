@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  sentiment-analysis
+spec:
+  selector:
+    app:  sentiment-analysis
+  type:  LoadBalancer
+  ports:
+  - port:  80
+    targetPort:  8000
