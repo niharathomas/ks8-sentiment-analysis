@@ -11,32 +11,27 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
     type: RollingUpdate
+  
   template:
     metadata:
       labels:
         app:  sentiment-analysis
     spec: 
       containers:
-      - image:  net128/k8s-sentiment-analysis
+      - image:  k8s-sentiment-analysis
         name:  sentiment-analysis
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /status
             port: 8000
-          initialDelaySeconds: 90
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /status
-            port: 8000
-          initialDelaySeconds: 30
-          timeoutSeconds: 10    
         ports:
         - containerPort:  8000
         volumeMounts:
-        - mountPath: /gcp-auth
-          name: gcp-auth
+        - mountPath: /sentiment-analysis
+          name: sentiment-analysis
       volumes:
-        - name: gcp-auth
-          emptyDir: {}
+      - name: sentiment-analysis
+        configMap:
+          name: sentiment-analysis
+          defaultMode: 0400

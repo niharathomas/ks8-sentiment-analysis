@@ -7,7 +7,7 @@ from google.cloud.language import enums
 from google.cloud.language import types
 
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "k8s-sentiment-analysis-95eb103034f6.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "<<ADD_KEY_FILE_HERE>>"
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
